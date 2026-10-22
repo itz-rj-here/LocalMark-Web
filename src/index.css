@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --sb-size: 9px;
+  --sb-size-thin: 6px;
+  --sb-track: #f1f5f9;
+  --sb-track-border: rgba(148, 163, 184, 0.22);
+  --sb-thumb: linear-gradient(180deg, #94a3b8 0%, #64748b 100%);
+  --sb-thumb-solid: #64748b;
+  --sb-thumb-hover: linear-gradient(180deg, #6366f1 0%, #4f46e5 100%);
+  --sb-thumb-active: #4338ca;
+}
+
+.dark {
+  --sb-track: #0b101b;
+  --sb-track-border: rgba(30, 41, 59, 0.75);
+  --sb-thumb: linear-gradient(180deg, #334155 0%, #4f46e5 100%);
+  --sb-thumb-solid: #475569;
+  --sb-thumb-hover: linear-gradient(180deg, #6366f1 0%, #7c3aed 100%);
+  --sb-thumb-active: #818cf8;
+}
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Universal Custom Scrollbars (WebKit / Blink / Chromium) */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar,
+.custom-scrollbar::-webkit-scrollbar {
+  width: var(--sb-size);
+  height: var(--sb-size);
+}
+
+.custom-scrollbar-thin::-webkit-scrollbar {
+  width: var(--sb-size-thin);
+  height: var(--sb-size-thin);
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track,
+*::-webkit-scrollbar-track,
+.custom-scrollbar::-webkit-scrollbar-track,
+.custom-scrollbar-thin::-webkit-scrollbar-track {
+  background: var(--sb-track);
+  border-radius: 9999px;
+  box-shadow: inset 0 0 0 1px var(--sb-track-border);
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-thumb,
+.custom-scrollbar::-webkit-scrollbar-thumb,
+.custom-scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb);
+  border-radius: 9999px;
+  border: 2px solid var(--sb-track);
+  background-clip: padding-box;
+  transition: background 150ms ease;
+}
+
+.custom-scrollbar-thin::-webkit-scrollbar-thumb {
+  border-width: 1px;
+}
+
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover,
+*::-webkit-scrollbar-thumb:hover,
+.custom-scrollbar::-webkit-scrollbar-thumb:hover,
+.custom-scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: var(--sb-thumb-hover);
+}
+
+html::-webkit-scrollbar-thumb:active,
+body::-webkit-scrollbar-thumb:active,
+*::-webkit-scrollbar-thumb:active,
+.custom-scrollbar::-webkit-scrollbar-thumb:active,
+.custom-scrollbar-thin::-webkit-scrollbar-thumb:active {
+  background: var(--sb-thumb-active);
+}
+
+html::-webkit-scrollbar-corner,
+body::-webkit-scrollbar-corner,
+*::-webkit-scrollbar-corner,
+.custom-scrollbar::-webkit-scrollbar-corner,
+.custom-scrollbar-thin::-webkit-scrollbar-corner {
+  background: var(--sb-track);
+}
+
+/* Fallback for browsers that do not support ::-webkit-scrollbar */
+@supports not selector(::-webkit-scrollbar) {
+  html,
+  body,
+  *,
+  .custom-scrollbar,
+  .custom-scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--sb-thumb-solid) var(--sb-track);
+  }
+}
+

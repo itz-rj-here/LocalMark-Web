@@ -1,0 +1,6 @@
+{
+  "name": "LocalMark Desktop",
+  "description": "100% Offline Bulk Watermark Studio for Windows — high-speed multi-core batch watermarking for 10,000+ photos and videos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
