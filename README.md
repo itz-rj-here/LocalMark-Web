@@ -72,10 +72,10 @@ Created by **[Itz RJ](https://github.com/itz-rj-here)**.
 ## 🛠️ Tech Stack
 
 - **Frontend Framework**: [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
-- **Build Tool**: [Vite 6](https://vitejs.dev/)
+- **Build Tool**: [Vite](https://vite.dev/)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (`@tailwindcss/vite`)
 - **Icons**: [Lucide React](https://lucide.dev/)
-- ** Archive Streaming**: [fflate](https://github.com/101arrowz/fflate) (high-speed client-side ZIP generation)
+- **Archive Engine**: Native zero-dependency CRC32 Store-Mode `.zip` streaming builder
 - **Rendering & Audio**: Native HTML5 2D Canvas API, File System Access API, and Web Audio API
 
 ---
@@ -112,13 +112,14 @@ npm run preview
 
 ## 🌐 Deploying to Vercel
 
-This project is pre-configured with [`vercel.json`](./vercel.json) for zero-configuration deployment on **Vercel**.
+This project is pre-configured with [`vercel.json`](./vercel.json) and [`.npmrc`](./.npmrc) for zero-configuration deployment on **Vercel**.
 
 ### Option 1: Deploy via Vercel Dashboard (Recommended)
 1. Push this repository to your GitHub, GitLab, or Bitbucket account.
 2. Go to [vercel.com/new](https://vercel.com/new) and import your repository.
 3. Vercel will automatically detect **Vite** using `vercel.json`:
    - **Framework Preset**: `Vite`
+   - **Install Command**: `npm install --legacy-peer-deps`
    - **Build Command**: `npm run build`
    - **Output Directory**: `dist`
 4. Click **Deploy** — your live site will be ready in under a minute!
@@ -138,30 +139,29 @@ vercel --prod
 ## 📁 Project Structure
 
 ```text
-├── public/                     # Static assets (if any)
 ├── src/
 │   ├── components/
-│   │   ├── TopBar.tsx          # Step navigation, sound toggle, help modal & reset
-│   │   ├── Step1AddMedia.tsx   # Media & logo ingestion, resolution grouping
-│   │   ├── Step2Configure.tsx  # Interactive canvas preview, per-resolution overrides
-│   │   └── Step3ProcessExport.tsx # Batch processor, ZIP & Save-to-Folder export
+│   │   ├── TopBar.tsx             # Step navigation, sound toggle, help modal & reset
+│   │   ├── Step1AddMedia.tsx      # Media & logo ingestion, resolution grouping
+│   │   ├── Step2Configure.tsx     # Interactive canvas preview, per-resolution overrides
+│   │   ├── Step3ProcessExport.tsx # Batch processor, ZIP & Save-to-Folder export
+│   │   └── HelpModal.tsx          # Interactive guide & shortcut reference
+│   ├── types/
+│   │   └── watermark.ts           # TypeScript interfaces & default configurations
 │   ├── utils/
-│   │   ├── exif.ts             # EXIF orientation parser & normalizer
-│   │   ├── presets.ts          # Built-in & localStorage watermark presets
-│   │   ├── samplePack.ts       # Procedural studio sample images & logos
-│   │   ├── sound.ts            # Web Audio API synthesized sound alerts
-│   │   ├── watermarkEngine.ts  # High-precision HTML5 Canvas & video watermark renderer
-│   │   └── zipExport.ts        # Streaming store-mode ZIP builder
-│   ├── App.tsx                 # Root state, resolution override manager, global progress & footer
-│   ├── index.css               # Tailwind CSS v4 + custom scrollbar styling
-│   ├── main.tsx                # Application entry point
-│   └── types.ts                # TypeScript interfaces & defaults
-├── index.html                  # HTML entry point
-├── LICENSE                     # MIT License
-├── package.json                # Project metadata, scripts & dependencies
-├── tsconfig.json               # TypeScript configuration
-├── vercel.json                 # Vercel deployment & SPA routing configuration
-└── vite.config.ts              # Vite bundler configuration
+│   │   ├── canvasRenderer.ts      # High-precision HTML5 Canvas & video watermark renderer
+│   │   ├── soundAlerts.ts         # Web Audio API synthesized sound alerts
+│   │   └── watermarkEngine.ts     # Batch processing, EXIF parser & store-mode ZIP builder
+│   ├── App.tsx                    # Root state, resolution overrides, global progress & footer
+│   ├── index.css                  # Tailwind CSS v4 + custom scrollbar styling
+│   └── main.tsx                   # Application entry point
+├── .npmrc                         # NPM peer-dependency resolution config for Vercel/CI
+├── index.html                     # HTML entry point
+├── LICENSE                        # MIT License
+├── package.json                   # Project metadata, scripts & dependencies
+├── tsconfig.json                  # TypeScript configuration
+├── vercel.json                    # Vercel deployment & SPA routing configuration
+└── vite.config.ts                 # Vite bundler configuration
 ```
 
 ---
