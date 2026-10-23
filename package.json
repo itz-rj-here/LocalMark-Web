@@ -1,7 +1,13 @@
 {
-  "name": "react-example",
+  "name": "localmark",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "LocalMark — 100% Offline Bulk Image & Video Watermark Studio",
+  "license": "MIT",
+  "author": {
+    "name": "Itz RJ",
+    "url": "https://github.com/itz-rj-here"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
